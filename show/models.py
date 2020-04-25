@@ -2,7 +2,6 @@ from django.db import models
 
 
 class Author(models.Model):
-
     name = models.CharField('Name', max_length=256)
     email = models.EmailField('Email')
 
@@ -15,13 +14,11 @@ class Author(models.Model):
 
 
 class Show(models.Model):
-
     class Type(models.TextChoices):
         EPISODIC = 'episodic', 'Episodic'
         SERIAL = 'serial', 'Serial'
 
     name = models.CharField('Name', max_length=256)
-    short_description = models.CharField('Short description', max_length=256)
     long_description = models.TextField('Long description', max_length=4000)
     image = models.URLField('Image')
     language = models.CharField('Language', max_length=256)
@@ -54,7 +51,6 @@ class Show(models.Model):
 
 
 class Episode(models.Model):
-
     class EpisodeType(models.TextChoices):
         FULL = 'full', 'Full'
         TRAILER = 'trailer', 'Trailer'
@@ -69,12 +65,10 @@ class Episode(models.Model):
         APPLICATION_PDF = 'application/pdf'
 
     title = models.CharField('Title', max_length=256)
-    subtitle = models.CharField('Subtitle', max_length=256)
     notes = models.TextField('Notes')
-    episode_number = models.PositiveIntegerField('Episode number', null=True)
-    season_number = models.PositiveIntegerField('Season number', null=True)
+    episode_number = models.PositiveIntegerField('Episode number', null=True, blank=True)
+    season_number = models.PositiveIntegerField('Season number', null=True, blank=True)
     type = models.CharField('Episode type', max_length=8, choices=EpisodeType.choices, default=EpisodeType.FULL)
-    copyright = models.CharField('Copyright', max_length=256, blank=True)
     is_blocked = models.BooleanField('Is blocked?', default=False)
 
     file_url = models.URLField('File url')
@@ -82,7 +76,7 @@ class Episode(models.Model):
     file_type = models.CharField('File Type', choices=FileType.choices, max_length=24, default=FileType.AUDIO_MPEG)
 
     publication_date = models.DateTimeField('Publication date')
-    duration = models.IntegerField('Duration in sec', null=True)
+    duration = models.IntegerField('Duration in sec', null=True, blank=True)
     link = models.URLField('Episode link', blank=True)
     image = models.URLField('Image', blank=True)
     is_include_explicit_language = models.BooleanField('Is include explicit language?', default=False)

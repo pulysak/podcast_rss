@@ -10,7 +10,7 @@ class AuthorAdmin(admin.ModelAdmin):
 
 @admin.register(Show)
 class ShowAdmin(admin.ModelAdmin):
-    list_display = ('name', 'short_description', 'is_include_explicit_language')
+    list_display = ('name', 'is_include_explicit_language')
 
 
 @admin.register(Episode)
