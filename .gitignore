@@ -1,0 +1,6 @@
+*.egg-info/
+db.sqlite3
+.venv/
+.python-version
+__pycache__/
+.idea/
