@@ -31,7 +31,7 @@ class BaseFeedView(Feed):
                     queryset=Episode.objects.filter(publication_date__lte=datetime.datetime.now()),
                 )
             )
-            .get(id=kwargs.get('show_id'))
+            .get(slug=kwargs.get('show_slug'))
         )
 
     def description(self, obj):

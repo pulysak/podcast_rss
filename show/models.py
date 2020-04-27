@@ -19,6 +19,7 @@ class Show(models.Model):
         SERIAL = 'serial', 'Serial'
 
     name = models.CharField('Name', max_length=256)
+    slug = models.SlugField('Slug', unique=True)
     long_description = models.TextField('Long description', max_length=4000)
     image = models.URLField('Image')
     language = models.CharField('Language', max_length=256)
